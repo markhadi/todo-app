@@ -10,9 +10,13 @@ import TodoFilter from "./components/TodoFilter";
 import { useTodo } from "./hooks/useTodo";
 
 const App = () => {
-  const { todoItems, currentTodo, handleInputChange, handleAddTodo } = useTodo(
-    data.todos
-  );
+  const {
+    todoItems,
+    currentTodo,
+    handleInputChange,
+    handleAddTodo,
+    handleDeleteTodo,
+  } = useTodo(data.todos);
 
   const remainingTodos = data.todos.filter((todo) => !todo.completed).length;
 
@@ -44,7 +48,7 @@ const App = () => {
 
         <ul>
           {todoItems.map((todo) => (
-            <TodoItem todo={todo} />
+            <TodoItem key={todo.id} todo={todo} onDelete={handleDeleteTodo} />
           ))}
 
           <div>

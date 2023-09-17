@@ -20,10 +20,16 @@ export const useTodo = (initialData) => {
     setCurrentTodo("");
   };
 
+  const handleDeleteTodo = (id) => {
+    const updatedTodos = todoItems.filter((todo) => todo.id !== id);
+    setTodoItems(updatedTodos);
+  };
+
   return {
     todoItems,
     currentTodo,
     handleInputChange,
     handleAddTodo,
+    handleDeleteTodo,
   };
 };

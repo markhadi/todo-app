@@ -19,6 +19,7 @@ const App = () => {
     handleToggleComplete,
     currentFilter,
     setCurrentFilter,
+    clearCompletedTodos,
   } = useTodo(data.todos);
 
   let filteredTodos;
@@ -79,7 +80,9 @@ const App = () => {
               currentFilter={currentFilter}
               onFilterChange={setCurrentFilter}
             />
-            <button type="button">Clear completed</button>
+            <button type="button" onClick={clearCompletedTodos}>
+              Clear completed
+            </button>
           </div>
         </ul>
 

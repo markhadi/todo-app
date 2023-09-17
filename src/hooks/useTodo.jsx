@@ -33,6 +33,11 @@ export const useTodo = (initialData) => {
     setTodoItems(updatedTodos);
   };
 
+  const clearCompletedTodos = () => {
+    const activeTodos = todoItems.filter((todo) => !todo.completed);
+    setTodoItems(activeTodos);
+  };
+
   return {
     todoItems,
     currentTodo,
@@ -42,5 +47,6 @@ export const useTodo = (initialData) => {
     handleToggleComplete,
     currentFilter,
     setCurrentFilter,
+    clearCompletedTodos,
   };
 };

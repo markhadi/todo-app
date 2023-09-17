@@ -1,6 +1,9 @@
 import bgDesktopLight from "./assets/images/bg-desktop-light.jpg";
+import bgDesktopDark from "./assets/images/bg-desktop-dark.jpg";
 import bgMobileLight from "./assets/images/bg-mobile-light.jpg";
+import bgMobileDark from "./assets/images/bg-mobile-dark.jpg";
 import iconMoon from "./assets/images/icon-moon.svg";
+import iconSun from "./assets/images/icon-sun.svg";
 
 import data from "./data/data.json";
 
@@ -9,6 +12,7 @@ import TodoFilter from "./components/TodoFilter";
 
 import { useTodo } from "./hooks/useTodo";
 import useViewportWidth from "./hooks/useViewportWidth ";
+import useDarkMode from "./hooks/useDarkMode";
 
 const App = () => {
   const {
@@ -42,18 +46,33 @@ const App = () => {
 
   const remainingTodos = todoItems.filter((todo) => !todo.completed).length;
 
+  const [darkMode, toggleDarkMode] = useDarkMode();
+
   return (
     <main>
       <picture>
-        <source media="(min-width: 376px)" srcSet={bgDesktopLight} />
-        <img src={bgMobileLight} alt="Background image for the app" />
+        {darkMode ? (
+          <>
+            <source media="(min-width: 376px)" srcSet={bgDesktopDark} />
+            <img src={bgMobileDark} alt="Background image for the app" />
+          </>
+        ) : (
+          <>
+            <source media="(min-width: 376px)" srcSet={bgDesktopLight} />
+            <img src={bgMobileLight} alt="Background image for the app" />
+          </>
+        )}
       </picture>
 
       <section className="flex flex-col justify-center items-center w-full max-w-[540px] z-[1]">
         <div className="flex justify-between w-full mb-9 sm:mb-10">
           <h1>Todo</h1>
-          <button type="button">
-            <img src={iconMoon} alt="Toggle theme" className="h-5 sm:h-max" />
+          <button type="button" onClick={toggleDarkMode}>
+            {darkMode ? (
+              <img src={iconSun} alt="Toggle theme" className="h-5 sm:h-max" />
+            ) : (
+              <img src={iconMoon} alt="Toggle theme" className="h-5 sm:h-max" />
+            )}
           </button>
         </div>
 
@@ -73,7 +92,7 @@ const App = () => {
           />
         </form>
 
-        <ul className="w-full bg-white rounded-md overflow-hidden mb-5 box_shadow sm:mb-[52px]">
+        <ul className="w-full bg-white rounded-md overflow-hidden mb-5 box_shadow sm:mb-[52px] dark:bg-neutral-dark-verydarkdesaturatedblue">
           {filteredTodos.map((todo) => (
             <TodoItem
               key={todo.id}

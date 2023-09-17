@@ -5,12 +5,14 @@
 @layer base {
   body {
     @apply font-josefin font-normal text-[12px] tracking-[-0.01em] leading-none text-neutral-light-verydarkgrayishblue1
-            sm:text-[18px];
+            sm:text-[18px]
+            dark:text-neutral-dark-lightgrayishblue;
   }
 
   main {
     @apply min-h-screen flex flex-col items-center px-6 py-12 bg-neutral-light-verylightgray
-            sm:py-0 sm:pt-[78px] sm:pb-12;
+            sm:py-0 sm:pt-[78px] sm:pb-12
+            dark:bg-neutral-dark-verydarkblue;
   }
 
   picture {
@@ -26,12 +28,15 @@
 @layer components {
   .todo_input {
     @apply w-full bg-white outline-none px-5 py-4 rounded-md text-neutral-light-verydarkgrayishblue1
-            sm:px-6 sm:py-5;
+            sm:px-6 sm:py-5
+            dark:bg-neutral-dark-verydarkdesaturatedblue dark:text-neutral-dark-lightgrayishblue
+            placeholder:dark:text-neutral-dark-verydarkgrayishblue1;
   }
 
   .border_bottom {
     border-bottom: 1px;
-    @apply border-solid border-neutral-light-verylightgrayishblue;
+    @apply border-solid border-neutral-light-verylightgrayishblue
+          dark:border-neutral-dark-verydarkgrayishblue1;
   }
 
   .delete_todo {
@@ -43,16 +48,19 @@
   }
 
   .completed {
-    @apply line-through text-neutral-light-lightgrayishblue;
+    @apply line-through text-neutral-light-lightgrayishblue
+          dark:text-neutral-dark-verydarkgrayishblue1;
   }
 
   .btn {
-    @apply hover:text-neutral-light-verydarkgrayishblue1 transition-all;
+    @apply hover:text-neutral-light-verydarkgrayishblue1 transition-all
+            dark:hover:text-neutral-dark-lightgrayishblue;
   }
 
   .todo_filter_container {
     @apply w-full flex gap-[18px] justify-center items-center py-4 bg-white box_shadow rounded-md text-[14px] font-bold mb-11
-            sm:py-0 sm:mb-0 sm:w-max;
+            sm:py-0 sm:mb-0 sm:w-max
+            dark:bg-neutral-dark-verydarkdesaturatedblue;
   }
 }
 
@@ -70,7 +78,8 @@ input[type="checkbox"] {
   @apply relative cursor-pointer h-5 w-5 grid place-content-center
           sm:h-6 sm:w-6
           before:absolute before:inset-0 before:w-5 before:h-5 before:rounded-full before:border before:border-solid before:border-neutral-light-verylightgrayishblue before:bg-white before:transition-colors before:duration-300
-          sm:before:h-6 sm:before:w-6;
+          sm:before:h-6 sm:before:w-6
+          dark:before:border-neutral-dark-verydarkgrayishblue1 dark:before:bg-neutral-dark-verydarkdesaturatedblue;
 }
 
 input[type="checkbox"]:checked + label.checkbox_custom::before {

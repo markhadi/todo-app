@@ -3,6 +3,7 @@ import { useState } from "react";
 export const useTodo = (initialData) => {
   const [todoItems, setTodoItems] = useState(initialData);
   const [currentTodo, setCurrentTodo] = useState("");
+  const [currentFilter, setCurrentFilter] = useState("all");
 
   const handleInputChange = (e) => {
     setCurrentTodo(e.target.value);
@@ -39,5 +40,7 @@ export const useTodo = (initialData) => {
     handleAddTodo,
     handleDeleteTodo,
     handleToggleComplete,
+    currentFilter,
+    setCurrentFilter,
   };
 };

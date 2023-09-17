@@ -17,7 +17,23 @@ const App = () => {
     handleAddTodo,
     handleDeleteTodo,
     handleToggleComplete,
+    currentFilter,
+    setCurrentFilter,
   } = useTodo(data.todos);
+
+  let filteredTodos;
+
+  switch (currentFilter) {
+    case "active":
+      filteredTodos = todoItems.filter((todo) => !todo.completed);
+      break;
+    case "completed":
+      filteredTodos = todoItems.filter((todo) => todo.completed);
+      break;
+    default:
+      filteredTodos = todoItems;
+      break;
+  }
 
   const remainingTodos = data.todos.filter((todo) => !todo.completed).length;
 
@@ -48,7 +64,7 @@ const App = () => {
         </form>
 
         <ul>
-          {todoItems.map((todo) => (
+          {filteredTodos.map((todo) => (
             <TodoItem
               key={todo.id}
               todo={todo}
@@ -59,7 +75,10 @@ const App = () => {
 
           <div>
             <span>{remainingTodos} items left</span>
-            <TodoFilter />
+            <TodoFilter
+              currentFilter={currentFilter}
+              onFilterChange={setCurrentFilter}
+            />
             <button type="button">Clear completed</button>
           </div>
         </ul>

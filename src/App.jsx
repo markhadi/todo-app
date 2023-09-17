@@ -49,15 +49,19 @@ const App = () => {
         <img src={bgMobileLight} alt="Background image for the app" />
       </picture>
 
-      <section>
-        <div>
+      <section className="flex flex-col justify-center items-center w-full max-w-[540px] z-[1]">
+        <div className="flex justify-between w-full mb-9">
           <h1>Todo</h1>
           <button type="button">
-            <img src={iconMoon} alt="Toggle theme" />
+            <img src={iconMoon} alt="Toggle theme" className="h-5" />
           </button>
         </div>
 
-        <form method="post" onSubmit={handleAddTodo}>
+        <form
+          method="post"
+          onSubmit={handleAddTodo}
+          className="w-full mb-4 box_shadow"
+        >
           <input
             type="text"
             id="todo"
@@ -65,10 +69,11 @@ const App = () => {
             placeholder="Create a new todo..."
             value={currentTodo}
             onChange={handleInputChange}
+            className="todo_input"
           />
         </form>
 
-        <ul>
+        <ul className="w-full bg-white rounded-md overflow-hidden mb-5 box_shadow">
           {filteredTodos.map((todo) => (
             <TodoItem
               key={todo.id}
@@ -78,7 +83,7 @@ const App = () => {
             />
           ))}
 
-          <div>
+          <div className="flex justify-between items-center px-5 py-[18px] text-neutral-light-darkgrayishblue text-[14px]">
             <span>{remainingTodos} items left</span>
             {!isMobile && (
               <TodoFilter
@@ -86,7 +91,7 @@ const App = () => {
                 onFilterChange={setCurrentFilter}
               />
             )}
-            <button type="button" onClick={clearCompletedTodos}>
+            <button type="button" onClick={clearCompletedTodos} className="btn">
               Clear completed
             </button>
           </div>
@@ -100,7 +105,9 @@ const App = () => {
           />
         )}
 
-        <span>Drag and drop to reorder list</span>
+        <span className="text-[14px] text-neutral-light-darkgrayishblue">
+          Drag and drop to reorder list
+        </span>
       </section>
     </main>
   );

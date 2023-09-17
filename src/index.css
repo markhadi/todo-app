@@ -1,3 +1,58 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-josefin font-normal text-[12px] tracking-[-0.01em] leading-none text-neutral-light-verydarkgrayishblue1;
+  }
+
+  main {
+    @apply min-h-screen flex flex-col items-center px-6 py-12 bg-neutral-light-verylightgray;
+  }
+
+  picture {
+    @apply absolute top-0 left-0 z-0;
+  }
+
+  h1 {
+    @apply text-neutral-light-verylightgray uppercase text-[26px] font-bold tracking-[0.4em];
+  }
+}
+
+@layer components {
+  .todo_input {
+    @apply w-full bg-white outline-none px-5 py-4 rounded-md text-neutral-light-verydarkgrayishblue1;
+  }
+
+  .border_bottom {
+    border-bottom: 1px;
+    @apply border-solid border-neutral-light-verylightgrayishblue;
+  }
+
+  .delete_todo {
+    @apply opacity-0 transition-opacity duration-300;
+  }
+
+  li:hover .delete_todo {
+    @apply opacity-100;
+  }
+
+  .completed {
+    @apply line-through text-neutral-light-lightgrayishblue;
+  }
+
+  .btn {
+    @apply hover:text-neutral-light-verydarkgrayishblue1 transition-all;
+  }
+
+  .todo_filter_container {
+    @apply w-full flex gap-[18px] justify-center items-center py-4 bg-white box_shadow rounded-md text-[14px] font-bold mb-11;
+  }
+}
+
+@layer utilities {
+  .box_shadow {
+    box-shadow: 0px 5px 34px -5px rgba(0, 0, 0, 0.25);
+  }
+}

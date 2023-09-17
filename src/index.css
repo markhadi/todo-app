@@ -61,3 +61,23 @@
     box-shadow: 0px 5px 34px -5px rgba(0, 0, 0, 0.25);
   }
 }
+
+input[type="checkbox"] {
+  @apply invisible absolute inset-0 m-0 z-10;
+}
+
+.checkbox_custom {
+  @apply relative cursor-pointer h-5 w-5 grid place-content-center
+          sm:h-6 sm:w-6
+          before:absolute before:inset-0 before:w-5 before:h-5 before:rounded-full before:border before:border-solid before:border-neutral-light-verylightgrayishblue before:bg-white before:transition-colors before:duration-300
+          sm:before:h-6 sm:before:w-6;
+}
+
+input[type="checkbox"]:checked + label.checkbox_custom::before {
+  background: linear-gradient(
+    180deg,
+    hsl(192, 100%, 67%) 0%,
+    hsl(280, 87%, 65%) 100%
+  );
+  border-color: transparent;
+}

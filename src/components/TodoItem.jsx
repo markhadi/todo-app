@@ -1,13 +1,22 @@
 import iconCross from "../assets/images/icon-cross.svg";
+import iconCheck from "../assets/images/icon-check.svg";
 
 const TodoItem = ({ todo, onDelete, onToggleComplete }) => {
   return (
     <li className="flex items-center gap-3 px-5 py-4 border_bottom relative sm:px-6 sm:py-5 sm:gap-6">
       <input
         type="checkbox"
+        id={`todo-${todo.id}`}
         checked={todo.completed}
         onChange={() => onToggleComplete(todo.id)}
       />
+      <label htmlFor={`todo-${todo.id}`} className="checkbox_custom">
+        {todo.completed ? (
+          <img src={iconCheck} alt="checked" className="z-10" />
+        ) : (
+          ""
+        )}
+      </label>
       <p
         onClick={() => onToggleComplete(todo.id)}
         className={`${todo.completed ? "completed" : ""} cursor-pointer`}

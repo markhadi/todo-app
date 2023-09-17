@@ -7,7 +7,13 @@ import data from "./data/data.json";
 import TodoItem from "./components/TodoItem";
 import TodoFilter from "./components/TodoFilter";
 
+import { useTodo } from "./hooks/useTodo";
+
 const App = () => {
+  const { todoItems, currentTodo, handleInputChange, handleAddTodo } = useTodo(
+    data.todos
+  );
+
   const remainingTodos = data.todos.filter((todo) => !todo.completed).length;
 
   return (
@@ -25,17 +31,19 @@ const App = () => {
           </button>
         </div>
 
-        <form method="post">
+        <form method="post" onSubmit={handleAddTodo}>
           <input
             type="text"
             id="todo"
             name="todo"
             placeholder="Create a new todo..."
+            value={currentTodo}
+            onChange={handleInputChange}
           />
         </form>
 
         <ul>
-          {data.todos.map((todo) => (
+          {todoItems.map((todo) => (
             <TodoItem todo={todo} />
           ))}
 

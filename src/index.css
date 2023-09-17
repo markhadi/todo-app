@@ -4,11 +4,13 @@
 
 @layer base {
   body {
-    @apply font-josefin font-normal text-[12px] tracking-[-0.01em] leading-none text-neutral-light-verydarkgrayishblue1;
+    @apply font-josefin font-normal text-[12px] tracking-[-0.01em] leading-none text-neutral-light-verydarkgrayishblue1
+            sm:text-[18px];
   }
 
   main {
-    @apply min-h-screen flex flex-col items-center px-6 py-12 bg-neutral-light-verylightgray;
+    @apply min-h-screen flex flex-col items-center px-6 py-12 bg-neutral-light-verylightgray
+            sm:py-0 sm:pt-[78px] sm:pb-12;
   }
 
   picture {
@@ -16,13 +18,15 @@
   }
 
   h1 {
-    @apply text-neutral-light-verylightgray uppercase text-[26px] font-bold tracking-[0.4em];
+    @apply text-neutral-light-verylightgray uppercase text-[26px] font-bold tracking-[0.4em]
+              sm:text-[40px];
   }
 }
 
 @layer components {
   .todo_input {
-    @apply w-full bg-white outline-none px-5 py-4 rounded-md text-neutral-light-verydarkgrayishblue1;
+    @apply w-full bg-white outline-none px-5 py-4 rounded-md text-neutral-light-verydarkgrayishblue1
+            sm:px-6 sm:py-5;
   }
 
   .border_bottom {
@@ -47,7 +51,8 @@
   }
 
   .todo_filter_container {
-    @apply w-full flex gap-[18px] justify-center items-center py-4 bg-white box_shadow rounded-md text-[14px] font-bold mb-11;
+    @apply w-full flex gap-[18px] justify-center items-center py-4 bg-white box_shadow rounded-md text-[14px] font-bold mb-11
+            sm:py-0 sm:mb-0 sm:w-max;
   }
 }
 

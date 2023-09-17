@@ -50,17 +50,17 @@ const App = () => {
       </picture>
 
       <section className="flex flex-col justify-center items-center w-full max-w-[540px] z-[1]">
-        <div className="flex justify-between w-full mb-9">
+        <div className="flex justify-between w-full mb-9 sm:mb-10">
           <h1>Todo</h1>
           <button type="button">
-            <img src={iconMoon} alt="Toggle theme" className="h-5" />
+            <img src={iconMoon} alt="Toggle theme" className="h-5 sm:h-max" />
           </button>
         </div>
 
         <form
           method="post"
           onSubmit={handleAddTodo}
-          className="w-full mb-4 box_shadow"
+          className="w-full mb-4 box_shadow sm:mb-6"
         >
           <input
             type="text"
@@ -73,7 +73,7 @@ const App = () => {
           />
         </form>
 
-        <ul className="w-full bg-white rounded-md overflow-hidden mb-5 box_shadow">
+        <ul className="w-full bg-white rounded-md overflow-hidden mb-5 box_shadow sm:mb-[52px]">
           {filteredTodos.map((todo) => (
             <TodoItem
               key={todo.id}

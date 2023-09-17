@@ -8,6 +8,7 @@ import TodoItem from "./components/TodoItem";
 import TodoFilter from "./components/TodoFilter";
 
 import { useTodo } from "./hooks/useTodo";
+import useViewportWidth from "./hooks/useViewportWidth ";
 
 const App = () => {
   const {
@@ -35,6 +36,9 @@ const App = () => {
       filteredTodos = todoItems;
       break;
   }
+
+  const width = useViewportWidth();
+  const isMobile = width < 640;
 
   const remainingTodos = todoItems.filter((todo) => !todo.completed).length;
 
@@ -76,15 +80,25 @@ const App = () => {
 
           <div>
             <span>{remainingTodos} items left</span>
-            <TodoFilter
-              currentFilter={currentFilter}
-              onFilterChange={setCurrentFilter}
-            />
+            {!isMobile && (
+              <TodoFilter
+                currentFilter={currentFilter}
+                onFilterChange={setCurrentFilter}
+              />
+            )}
             <button type="button" onClick={clearCompletedTodos}>
               Clear completed
             </button>
           </div>
         </ul>
+
+        {isMobile && (
+          // Mobile-only filter buttons
+          <TodoFilter
+            currentFilter={currentFilter}
+            onFilterChange={setCurrentFilter}
+          />
+        )}
 
         <span>Drag and drop to reorder list</span>
       </section>

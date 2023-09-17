@@ -36,7 +36,7 @@ const App = () => {
       break;
   }
 
-  const remainingTodos = data.todos.filter((todo) => !todo.completed).length;
+  const remainingTodos = todoItems.filter((todo) => !todo.completed).length;
 
   return (
     <main>

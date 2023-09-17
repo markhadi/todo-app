@@ -25,11 +25,19 @@ export const useTodo = (initialData) => {
     setTodoItems(updatedTodos);
   };
 
+  const handleToggleComplete = (id) => {
+    const updatedTodos = todoItems.map((todo) =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    );
+    setTodoItems(updatedTodos);
+  };
+
   return {
     todoItems,
     currentTodo,
     handleInputChange,
     handleAddTodo,
     handleDeleteTodo,
+    handleToggleComplete,
   };
 };

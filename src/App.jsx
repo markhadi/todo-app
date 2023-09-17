@@ -16,6 +16,7 @@ const App = () => {
     handleInputChange,
     handleAddTodo,
     handleDeleteTodo,
+    handleToggleComplete,
   } = useTodo(data.todos);
 
   const remainingTodos = data.todos.filter((todo) => !todo.completed).length;
@@ -48,7 +49,12 @@ const App = () => {
 
         <ul>
           {todoItems.map((todo) => (
-            <TodoItem key={todo.id} todo={todo} onDelete={handleDeleteTodo} />
+            <TodoItem
+              key={todo.id}
+              todo={todo}
+              onDelete={handleDeleteTodo}
+              onToggleComplete={handleToggleComplete}
+            />
           ))}
 
           <div>

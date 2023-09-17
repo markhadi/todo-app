@@ -40,6 +40,7 @@ export const useTodo = (initialData) => {
 
   return {
     todoItems,
+    setTodoItems,
     currentTodo,
     handleInputChange,
     handleAddTodo,

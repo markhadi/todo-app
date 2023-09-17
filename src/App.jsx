@@ -14,9 +14,17 @@ import { useTodo } from "./hooks/useTodo";
 import useViewportWidth from "./hooks/useViewportWidth ";
 import useDarkMode from "./hooks/useDarkMode";
 
+import { DndContext, closestCenter } from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+
 const App = () => {
   const {
     todoItems,
+    setTodoItems,
     currentTodo,
     handleInputChange,
     handleAddTodo,
@@ -47,6 +55,26 @@ const App = () => {
   const remainingTodos = todoItems.filter((todo) => !todo.completed).length;
 
   const [darkMode, toggleDarkMode] = useDarkMode();
+
+  function handleDragEnd(event) {
+    const { active, over } = event;
+
+    const activeId = active.id.toString();
+    const overId = over.id.toString();
+
+    if (activeId !== overId) {
+      setTodoItems((items) => {
+        const oldIndex = items.findIndex(
+          (item) => item.id.toString() === activeId
+        );
+        const newIndex = items.findIndex(
+          (item) => item.id.toString() === overId
+        );
+
+        return arrayMove(items, oldIndex, newIndex);
+      });
+    }
+  }
 
   return (
     <main>
@@ -93,14 +121,24 @@ const App = () => {
         </form>
 
         <ul className="w-full bg-white rounded-md overflow-hidden mb-5 box_shadow sm:mb-[52px] dark:bg-neutral-dark-verydarkdesaturatedblue">
-          {filteredTodos.map((todo) => (
-            <TodoItem
-              key={todo.id}
-              todo={todo}
-              onDelete={handleDeleteTodo}
-              onToggleComplete={handleToggleComplete}
-            />
-          ))}
+          <DndContext
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}
+          >
+            <SortableContext
+              items={filteredTodos.map((todo) => todo.id.toString())}
+              strategy={verticalListSortingStrategy}
+            >
+              {filteredTodos.map((todo) => (
+                <TodoItem
+                  key={todo.id}
+                  todo={todo}
+                  onToggleComplete={handleToggleComplete}
+                  onDelete={handleDeleteTodo}
+                />
+              ))}
+            </SortableContext>
+          </DndContext>
 
           <div className="flex justify-between items-center px-5 py-[18px] text-neutral-light-darkgrayishblue text-[14px]">
             <span>{remainingTodos} items left</span>

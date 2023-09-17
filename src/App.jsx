@@ -1,4 +1,3 @@
-import { useState } from "react";
 import bgDesktopLight from "./assets/images/bg-desktop-light.jpg";
 import bgMobileLight from "./assets/images/bg-mobile-light.jpg";
 import iconMoon from "./assets/images/icon-moon.svg";
@@ -9,9 +8,7 @@ import TodoItem from "./components/TodoItem";
 import TodoFilter from "./components/TodoFilter";
 
 const App = () => {
-  const [todoItems, setTodoItems] = useState(data.todos);
-
-  const remainingTodos = todoItems.filter((todo) => !todo.completed).length;
+  const remainingTodos = data.todos.filter((todo) => !todo.completed).length;
 
   return (
     <main>
@@ -28,36 +25,24 @@ const App = () => {
           </button>
         </div>
 
-        <form action="#" method="post" onSubmit={handleAddTodo}>
+        <form method="post">
           <input
             type="text"
             id="todo"
             name="todo"
             placeholder="Create a new todo..."
-            value={currentTodo}
-            onChange={handleInputChange}
           />
         </form>
 
         <ul>
-          {todoItems.map((todo) => (
-            <TodoItem
-              key={todo.id}
-              todo={todo}
-              onToggleComplete={handleToggleComplete}
-              onDelete={handleDeleteTodo}
-            />
+          {data.todos.map((todo) => (
+            <TodoItem todo={todo} />
           ))}
 
           <div>
             <span>{remainingTodos} items left</span>
-            <TodoFilter
-              currentFilter={currentFilter}
-              onFilterChange={setCurrentFilter}
-            />
-            <button type="button" onClick={clearCompletedTodos}>
-              Clear completed
-            </button>
+            <TodoFilter />
+            <button type="button">Clear completed</button>
           </div>
         </ul>
 

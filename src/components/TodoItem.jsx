@@ -1,19 +1,13 @@
 import iconCross from "../assets/images/icon-cross.svg";
 
-const TodoItem = ({ todo, onToggleComplete, onDelete }) => {
+const TodoItem = ({ todo }) => {
   return (
-    <li>
-      <input
-        type="checkbox"
-        checked={todo.completed}
-        onChange={() => onToggleComplete(todo.id)}
-      />
+    <li key={todo.id}>
+      <input type="checkbox" />
       <p>{todo.title}</p>
-      <img
-        src={iconCross}
-        alt="Delete todo"
-        onClick={() => onDelete(todo.id)}
-      />
+      <button type="button">
+        <img src={iconCross} alt="Delete todo" />
+      </button>
     </li>
   );
 };

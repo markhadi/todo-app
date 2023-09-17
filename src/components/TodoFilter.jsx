@@ -1,15 +1,9 @@
-const TodoFilter = ({ currentFilter, onFilterChange }) => {
+const TodoFilter = () => {
   return (
     <div>
-      <button type="button" onClick={() => onFilterChange("all")}>
-        All
-      </button>
-      <button type="button" onClick={() => onFilterChange("active")}>
-        Active
-      </button>
-      <button type="button" onClick={() => onFilterChange("completed")}>
-        Completed
-      </button>
+      <button type="button">All</button>
+      <button type="button">Active</button>
+      <button type="button">Completed</button>
     </div>
   );
 };

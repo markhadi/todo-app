@@ -10,7 +10,7 @@
   }
 
   main {
-    @apply min-h-screen flex flex-col items-center px-6 py-12 bg-neutral-light-verylightgray
+    @apply min-h-screen flex flex-col items-center px-6 py-12 bg-neutral-light-verylightgray transition-colors duration-300
             sm:py-0 sm:pt-[78px] sm:pb-12
             dark:bg-neutral-dark-verydarkblue;
   }

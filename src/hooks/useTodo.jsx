@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const useTodo = (initialData) => {
-  const [todoItems, setTodoItems] = useState(initialData);
+  const storedTodos = JSON.parse(localStorage.getItem("todos"));
+  const [todoItems, setTodoItems] = useState(storedTodos || initialData);
   const [currentTodo, setCurrentTodo] = useState("");
   const [currentFilter, setCurrentFilter] = useState("all");
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todoItems));
+  }, [todoItems]);
 
   const handleInputChange = (e) => {
     setCurrentTodo(e.target.value);
